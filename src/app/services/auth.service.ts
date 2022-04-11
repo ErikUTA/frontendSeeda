@@ -39,6 +39,10 @@ export class AuthService {
     return this.httpClient.get<any>(`${this.AUTH_SERVER}/projects/count`);
   }
 
+  public projectsUser(param:any): any {
+    return this.httpClient.get<any>(`${this.AUTH_SERVER}/projects/${param}/user`);
+  }
+
   public get userValue(): any {
     return this.authSubject.value;
   }
@@ -82,6 +86,27 @@ deleteUser(id:any) {
   });
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
+
+addTask(datos: User) {
+  this.httpClient.post(`${this.AUTH_SERVER}/tasks`, datos).subscribe(data => {
+    return data;
+  }, error => {
+    console.log(error);
+  });
+}
+
+addProject(datos:any) {
+  this.httpClient.post(`${this.AUTH_SERVER}/projects`, datos).subscribe(data => {
+    return data;
+  }, error => {
+    console.log(error);
+  });
+}
+
+public getTask(): any {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/tasks`);
+}
 
 
 }

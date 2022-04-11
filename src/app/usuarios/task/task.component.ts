@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-task',
@@ -7,10 +8,22 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
+  tareas:any = [];
+  description: any;
 
-  constructor() { }
+  constructor(private service: AuthService) { }
 
   ngOnInit(): void {
+    this.service.getTask().subscribe((data: any) => {
+      console.log(data);
+      if(data){
+        for(let i=0; i<data.length; i++){
+          if(data[i].user_id === Number.parseInt(window.location.pathname.slice(11,12))){
+            this.tareas.push(data[i]);
+          }
+        }
+      }
+    });
   }
 
 
@@ -18,20 +31,13 @@ export class TaskComponent implements OnInit {
     {nombre: '5'},
     {nombre: '6'},
     {nombre: '7'},
-    {nombre: '8'},
   ]
   nombres = [
-    {nombre: '1'},
-    {nombre: '2'},
-    {nombre: '3'},
-    {nombre: '4'},
+    {status: true, task_name: 'Tarea de ejemplo', description: 'Ejemplo', user_id: 0, project_id: 0},
   ]
-
+  
   fechas = [
-    {nombre: '9'},
-    {nombre: '10'},
-    {nombre: '11'},
-    {nombre: '12'},
+    {status: true, task_name: 'Tarea de ejemplo', description: 'Ejemplo', user_id: 0, project_id: 0},
   ]
   
   drop(event: CdkDragDrop<any[]>) {
@@ -45,6 +51,23 @@ export class TaskComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+
+  onAdd(frm:any):void {
+    var array:any = {
+        status: true,
+        task_name: frm.value.task_name,
+        description: frm.value.description,
+        user_id: Number.parseInt(window.location.pathname.slice(11,12)),
+        project_id: Number.parseInt(window.location.pathname.slice(13, 14))
+    }
+    console.log(array);
+    this.service.addTask(array);
+    window.location.reload();
+  }
+
+  info(text:any){
+    this.description = text;
   }
 
   logout(): void {

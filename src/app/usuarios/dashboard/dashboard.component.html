@@ -6,8 +6,8 @@
           <img src="../../../assets/fo3.jpg" class="img" style="width: 130px; height: 130px; border-radius: 50%;"/>
         </div>
         <button class="btn waves-effect btn-transparent col-8 mt-5" [routerLink]="['/auth/dashboard']">Dashboard</button>
-        <hr class="text-white" />
-        <button class="btn waves-effect btn-transparent col-8" [routerLink]="['/auth/edit']">Mi perfil</button>
+        <!-- <hr class="text-white" />
+        <button class="btn waves-effect btn-transparent col-8" [routerLink]="['/auth/edit']">Mi perfil</button> -->
         <hr class="text-white" />
         <button class="btn waves-effect btn-transparent col-8" (click)="logout()">Logout</button>
       </div>
@@ -20,13 +20,27 @@
         </div>
         <!-- <a href="/auth/login" style="position: absolute; top: 7%; left: 4%; color: white;" onclick='localStorage.removeItem("ACCESS_TOKEN")'>Logout</a> -->
         <div style="display: flex; justify-content: center; width: 100%;">
-          <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+          <ngx-charts-pie-chart *ngIf="single.length > 1" [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
             [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
             (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
           </ngx-charts-pie-chart>
+          <div class="center-a" style="width: 200px; height: 360px;" *ngIf="single.length < 1">
+            <div>
+              Cargando...
+              <mat-progress-bar mode="buffer"></mat-progress-bar>
+            </div>
+          </div>
         </div>
         <div style="width: 100%; height: 80px; background: #01baef;" class="center-a text-white mt-4">
           <h2>Administra tus proyectos</h2>
+        </div>
+        <div class="d-flex justify-content-end m-4">
+          <button class="buttonAddProject" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+            Agregar proyecto
+          </button>
         </div>
         <div class="m-3 grid" *ngIf="infoProjects.length > 0">
           <div class="tarea" *ngFor="let i of infoProjects">
@@ -35,7 +49,7 @@
               <div class="text-center p-4">
                 <strong>Descripcion:</strong><p>{{ i.description }}</p>
                 <strong>Lider del proyecto:</strong><p>{{i.leader_project}}</p><br>
-                <button class="btn button-project mt-3 mb-3" [routerLink]="['/auth/listas']" onclick="">
+                <button class="btn button-project mt-3 mb-3" (click)="project(i.id)">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
@@ -90,6 +104,50 @@
           </div>
         </div>
         
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #012d54;">
+          <h2 class="modal-title text-white" id="exampleModalLabel">Agregar un proyecto</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="p-5">
+            <form #frm="ngForm" (ngSubmit)="onAdd(frm)">
+              <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Nombre del proyecto:</label>
+                <input name="project_name" type="text" class="form-control" id="exampleInputNombre"
+                  aria-describedby="project_name" ngModel required />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputCorreo" class="form-label">Descripción:</label>
+                <input name="description" type="text" class="form-control" id="exampleInputCorreo"
+                  aria-labelledby="description" ngModel required />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputCorreo" class="form-label">Nombre del lider de proyecto:</label>
+                <input name="leader_project" type="text" class="form-control" id="exampleInputCorreo"
+                  aria-labelledby="leader_project" ngModel required />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputCorreo" class="form-label">Seleccionar usuario:</label>
+                <select class="form-select" name="user_id" id="" ngModel required>
+                  <option *ngFor="let i of usuarios" value={{i.id}}>{{i.fullname}}</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary" ngModel required>Agregar</button>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>

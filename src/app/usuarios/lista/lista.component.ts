@@ -1,5 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-lista',
@@ -8,6 +9,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 
 export class ListaComponent implements OnInit {
+  usuarios: any;
   datos = [
     {nombre: '5'},
     {nombre: '6'},
@@ -28,11 +30,21 @@ export class ListaComponent implements OnInit {
     {nombre: '12'},
   ]
   
-  constructor() {
+  constructor(private service: AuthService) {
   }
   
   ngOnInit(): void {
+    var url = window.location.pathname.slice(13, 14);
+    if(url){
+      var number = Number.parseInt(url);
+      this.service.projectsUser(number).subscribe((data:any) => {
+        this.usuarios = data;
+        console.log(data);
+      });
+    }
+    console.log();
   }
+
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -44,6 +56,10 @@ export class ListaComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+
+  homeworks(param:any): void {    
+    window.location.href = `/auth/task/${param}/${window.location.pathname.slice(13, 14)}`
   }
 
   logout(): void {

@@ -1,45 +1,50 @@
-<div>
+<div style="height: auto;">
     <div class="sidebar text-center">
       <div>
       <div class="center-a pt-5">
           <img src="../../../assets/fo3.jpg" class="img" style="width: 130px; height: 130px; border-radius: 50%;"/>
       </div>
       <button class="btn waves-effect btn-transparent col-8 mt-5" [routerLink]="['/auth/dashboard']">Dashboard</button>
-      <hr class="text-white" />
-      <button class="btn waves-effect btn-transparent col-8" [routerLink]="['/auth/edit']">Mi perfil</button>
+      <!-- <hr class="text-white" />
+      <button class="btn waves-effect btn-transparent col-8" [routerLink]="['/auth/edit']">Mi perfil</button> -->
       <hr class="text-white" />
       <button class="btn waves-effect btn-transparent col-8" (click)="logout()">Logout</button>
       </div>
     </div>
-    <div class="dashboard p-4" style="background-image: url('../../../assets/banner-bg.png'); background-size: cover; background-repeat: no-repeat;">
+    <div class="dashboard p-4" style="background-image: url('../../../assets/banner-bg.png'); background-size: cover; background-repeat: no-repeat; height: auto;">
     <div style="width: 100%; height: 80px; background: #01baef;" class="center-a text-white">      
       <h2 style="margin: 0px;">Bienvenido al tablero de tareas</h2>
     </div>
-    <div class="target pt-3 pb-5" style="height: auto !important;">
-        <!-- <a href="/auth/dashboard" style="position: absolute; top: 7%; left: 4%; color: white;">Regresar</a> -->
+    <div class="target pt-3 pb-5" style="height: auto;">
+
+        <div class="col-12 text-end pe-5 pt-3">
+            <button class="button2Hover" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>
+                Agregar tarea
+            </button>
+        </div>
         <div class="center-list mt-5">
             <div cdkDropListGroup>
                 <div class="example-container">
                     <div
                         cdkDropList
-                        [cdkDropListData]="fechas"
+                        [cdkDropListData]="tareas"
                         class="example-list"
                         (cdkDropListDropped)="drop($event)"
                     >
                         <strong class="textTask">POR HACER</strong>
-                        <div class="example-box" *ngFor="let item of fechas" cdkDrag>
-                            <div style="display: flex; align-items: center;">Tarea: {{item.nombre}}</div>
-                        <div class="btn-group" style="box-shadow: 5px 5px 20px lightgray; border-radius: 15px;">
-                            <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"    class="btn btn-tarea" style="background: #353535; color: white;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                </svg>
-                            </button>
-                            <button class="btn btn-tarea" style="background: white; color: black;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                </svg>
-                            </button>
+                        <div class="example-box" *ngFor="let item of tareas" cdkDrag>
+                            <div style="display: flex; align-items: center;">{{item.task_name}}</div>
+                        <div style="box-shadow: 5px 5px 20px lightgray; border-radius: 15px;">
+                            
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="info(item.description)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                            </svg>
+                        </button>
+                            
                         </div>
                     </div>
                   </div>
@@ -47,25 +52,18 @@
                 <div class="example-container">
                     <div
                         cdkDropList
-                        [cdkDropListData]="datos"
+                        [cdkDropListData]="fechas"
                         class="example-list"
                         (cdkDropListDropped)="drop($event)"
                     >
                         <strong class="textTask">EN PROGRESO</strong>
-                        <div class="example-box" *ngFor="let item2 of datos" cdkDrag>
-                            <div style="display: flex; align-items: center;">Tarea: {{item2.nombre}}</div>
-                            <div class="btn-group" style="box-shadow: 5px 5px 20px lightgray; border-radius: 15px;">
-                                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"    class="btn btn-tarea" style="background: #353535; color: white; ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                    </svg>
-                                </button>
-                                <button class="btn btn-tarea" style="background: white; color: black;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                    </svg>
-                                </button>
-                            </div>
+                        <div class="example-box" *ngFor="let item2 of fechas" cdkDrag>
+                            <div style="display: flex; align-items: center;">{{item2.task_name}}</div>
+                            <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="info(description)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                </svg>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -78,47 +76,68 @@
                     >
                         <strong class="textTask">TERMINADAS</strong>
                         <div class="example-box" *ngFor="let item3 of nombres" cdkDrag>
-                            <div style="display: flex; align-items: center;">Tarea: {{item3.nombre}}</div>
-                            <div class="btn-group" style="box-shadow: 5px 5px 20px lightgray; border-radius: 15px;">
-                                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"    class="btn btn-tarea" style="background: #353535; color: white;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                    </svg>
-                                </button>
-                                <button class="btn btn-tarea" style="background: white; color: black;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                    </svg>
-                                </button>
-                            </div>
+                            <div style="display: flex; align-items: center;">{{item3.task_name}}</div>
+                            <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="info(description)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                </svg>
+                            </button> -->
                         </div>
                   </div>
                 </div>
-                
-                <div class="text-center mt-5">
-                    <h2>Usuarios</h2>
-                </div>
-
-                <table class="table table-light mt-2" style="border: solid 3px lightgray;">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Correo electronico</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-
             </div>
         </div>
+        <div style="height: 41vh; color: white;">
+            <p></p>
+        </div>
+        <!-- <a href="/auth/dashboard" style="position: absolute; top: 7%; left: 4%; color: white;">Regresar</a> -->
     </div>
     </div>    
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #01baef;">
+          <h2 class="modal-title text-white" id="exampleModalLabel">Agregar una tarea</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="p-5">
+                <form #frm="ngForm" (ngSubmit)="onAdd(frm)">
+                  <div class="mb-3">
+                    <label for="exampleInputNombre" class="form-label">Nombre de la tarea:</label>
+                    <input name="task_name" type="text" class="form-control" id="exampleInputNombre" aria-describedby="task_name" ngModel required/>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputCorreo" class="form-label">Descripción:</label>
+                    <input name="description" type="text" class="form-control" id="exampleInputCorreo" aria-labelledby="description" ngModel required />
+                  </div>              
+                  <button type="submit" class="btn btn-primary" ngModel required>Agregar</button>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">          
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h2 class="modal-title text-white" id="exampleModalLabel">Descripción</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>{{description}}</p>
+        </div>
+        <div class="modal-footer">          
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
 </div>

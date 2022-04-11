@@ -12,12 +12,13 @@ import { TaskComponent } from "../usuarios/task/task.component";
 import { UsersComponent } from "../usuarios/users/users.component";
 
 const routes: Routes = [
-    {path: 'landing', component: LandingComponent},
     {path: 'loading', component: ProgressbarComponent},
     {path: 'admin', component: DashboardAdminComponent, canActivate: [AdminGuard]},
     {path: 'dashboard', component: DashboardComponent, canActivate: [UserGuard]},
+    {path: 'listas/:id', component: ListaComponent, canActivate: [UserGuard]},
     {path: 'listas', component: ListaComponent, canActivate: [UserGuard]},
-    {path: 'edit', component: UsersComponent, canActivate: [UserGuard]},
+    // {path: 'edit', component: UsersComponent, canActivate: [UserGuard]},
+    {path: 'task/:id/:id', component: TaskComponent, canActivate: [UserGuard]},
     {path: 'task', component: TaskComponent, canActivate: [UserGuard]}
 ];
 

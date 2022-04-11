@@ -28,11 +28,41 @@
                     id="password"
                     class="validate"
                 />
-            </div>
-            <input type="submit" class="btn btn-primary button col-12 mt-5" value="Ingresar" />
+            </div>            
+            <input type="submit" class="btn btn-primary button col-12" value="Ingresar" />
             <div class="text-center mt-3">
-                <a [routerLink]="['/auth/landing']">Regresar</a>
+              <a [routerLink]="['/landing']">Regresar</a>
             </div>
-        </form> 
+            <div class="text-center mt-2">
+              <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal3">Info login</a>
+            </div>
+          </form> 
     
+</div>
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #012d54; border: solid #012d54 3px;">
+          <h2 class="modal-title text-white p-2" id="exampleModalLabel">Agregar un proyecto</h2>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="modal-body p-5">
+          - Usuario normal - <br>
+          <div class="ps-1">
+              email: erik4tohj@gmail.com <br>
+              password: asd123
+          </div>
+          <br>
+          - Usuario admin - <br>
+          <div class="ps-1">
+              email: erikromanromero24@gmail.com <br>
+              password: 12345
+          </div>
+        </div>
+        <div class="modal-footer p-3">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100px; height: 30px;">Close</button>
+        </div>
+      </div>
+    </div>
 </div>

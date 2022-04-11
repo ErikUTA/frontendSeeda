@@ -9,7 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class DashboardComponent implements OnInit {
   view: any = [600, 300];
-  single: any = [];
+  // single: any = [];
+  usuarios: any = [];
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
   };
 
   constructor(public service: AuthService) {
-    Object.assign(this, this.single);
+    // Object.assign(this, this.single);
   }
 
   onSelect(data: any): void {
@@ -41,30 +42,44 @@ export class DashboardComponent implements OnInit {
   onDeactivate(data: any): void {
     // console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
-    tareas:any;
-    proyectos:any;
+  tareas:any = 0;
+  proyectos:any = 0;
+  single:any = [];
   ngOnInit(){
+    this.service.getUsers().subscribe((data:any) => {
+      this.usuarios = data;
+    });
     this.service.proyects().subscribe((data:any) => {
       this.infoProjects = data;      
     });
     this.service.taskCount().subscribe((data:any) => {
-      this.tareas = data.count;      
+      this.single.push({name: "Tareas", value: data.count});
     });
     this.service.projectsCount().subscribe((data:any) => {
-      this.proyectos = data.count;      
-    });
-    this.single = [
-      {
-        "name": "Tareas",
-        "value": this.tareas ? this.tareas : 2
-      },
-      {
-        "name": "Proyectos",
-        "value": this.proyectos ? this.tareas : 3
-      }
-    ];
+      this.single.push({name: "Proyectos", value: data.count});
+    }); 
   }
   
+  
+  
+  
+  project(param:any): void {
+    window.location.href = `/auth/listas/${param}`;
+  }
+
+  onAdd(frm:any):void {
+    var array:any = {
+        project_name: frm.value.project_name,
+        description: frm.value.description,
+        leader_project: frm.value.leader_project,
+        user_id: Number.parseInt(frm.value.user_id),
+        projects: 0,
+        
+    }
+    console.log(array);
+    this.service.addProject(array);
+    window.location.reload();
+  }
 
   logout(): void {
     window.localStorage.removeItem('user');

@@ -81,3 +81,18 @@
     grid-template-columns: repeat(auto-fill, minmax(0rem, 575px)); 
     width: 100%;
 }
+
+.buttonAddProject {
+    background: white;
+    border: solid #012d54 2px;
+    width: 160px; 
+    height: 40px; 
+    border-radius: 18px;
+    transition: all 0.2s;
+}
+
+.buttonAddProject:hover {
+    background: #012d54;
+    border: solid #012d54 2px;
+    color: white;
+}

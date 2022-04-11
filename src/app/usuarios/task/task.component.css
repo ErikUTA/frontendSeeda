@@ -91,3 +91,19 @@
     padding-left: 5px;
     text-shadow: 0px 0px 24px rgba(0, 0, 0, 0.15);
   }
+
+  .button2Hover {
+    width: 140px; 
+    height: 40px; 
+    border-radius: 18px; 
+    background: #01baef; 
+    color: white; 
+    border: 0;
+    transition: all 0.2s;
+  }
+
+  .button2Hover:hover {
+    background: #ffffff;
+    border: solid #01baef 2px;
+    color: #01baef;
+  }

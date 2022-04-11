@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path: '', redirectTo: '/auth/landing', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
+  {path: 'landing', component: LandingComponent},
   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(x => x.AuthModule)},
 ];
 
