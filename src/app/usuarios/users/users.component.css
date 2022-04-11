@@ -1,0 +1,53 @@
+.project {
+    box-shadow: 0px 0px 20px rgba(18, 90, 116, 0.473);
+    height: auto;
+    margin: 15px;
+    background: white;
+    border-radius: 15px;
+}
+
+.project:hover {
+    transition: box-shadow 0.5s 0s ease;
+}
+
+.title {
+    width: 100%; 
+    height: 40px; 
+    background: rgb(47, 47, 141);
+    color: white;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    padding-left: 15px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.button-project {
+    border-radius: 20px;
+    border: 0px;
+    background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
+}
+
+.button-project:hover {
+    background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+}
+
+.img-user {
+    width: 30%;
+    /* border-radius: 15px; */
+}
+
+.card-users {
+    background: #114358;
+    color: white;
+}
+
+.btn-image {
+    background: #3848aa;
+    color: white;
+    width: 30%;
+    border-radius: 0%;
+    display: grid;
+    /* height: 25px; */
+}

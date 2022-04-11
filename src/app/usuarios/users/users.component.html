@@ -1,0 +1,82 @@
+<div style="display: flex;">
+    <div class="sidebar text-center">
+        <div>
+        <div class="center-a pt-5">
+            <img src="../../../assets/fo3.jpg" class="img" style="width: 130px; height: 130px; border-radius: 50%;"/>
+        </div>
+        <button class="btn waves-effect btn-transparent col-8 mt-5" [routerLink]="['/auth/dashboard']">Dashboard</button>
+        <hr class="text-white" />
+        <button class="btn waves-effect btn-transparent col-8" [routerLink]="['/auth/edit']">Mi perfil</button>
+        <hr class="text-white" />
+        <button class="btn waves-effect btn-transparent col-8" (click)="logout()">Logout</button>
+        </div>
+    </div>
+    
+    <div class="dashboard h-100 p-4" style="background-image: url('../../../assets/banner-bg.png'); background-size: cover; background-repeat: no-repeat;">
+        <div class="target p-4">
+            <hr>
+            <div class="d-flex mt-4 mb-5">
+                <div class="col-4">
+                    <strong>Foto de perfil</strong>
+                    <p class="pe-3 text-secondary">En este apartado subiras la foto de perfil que sea de tu agrado</p>
+                </div>
+                <div class="col-8">
+                    <img src="../../assets/user.jpg" alt="" class="img-user">
+                    <button class="btn btn-image mt-3">Cambiar</button>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex mt-4 mb-5">
+                <div class="col-4">
+                    <strong>Datos del usuario</strong>
+                    <p class="pe-3 text-secondary">En este apartado agregaras tus datos personales</p>
+                </div>
+                <div class="col-8">
+                    <div class="d-flex">
+                        <div class="col-5">
+                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="ms-3 col-5">
+                            <label for="exampleInputPassword1" class="form-label">Telefono</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                    <div class="d-flex mt-3">
+                        <div class="col-5">
+                            <label for="exampleInputEmail1" class="form-label">Apellido</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="ms-3 col-5">
+                            <label for="exampleInputPassword1" class="form-label">Telefono movil</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                    <div class="d-flex mt-3">
+                        <div class="col-5">
+                            <label for="exampleInputEmail1" class="form-label">Correo electronico</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="ms-3 col-5">
+                            <label for="exampleInputPassword1" class="form-label">Cambiar contraseña</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex mt-4 mb-5">
+                <div class="col-4">
+                    <strong>Descripcion del usuario</strong>
+                    <p class="pe-3 text-secondary">En este apartado podras editar la descripcion del usuario</p>
+                </div>
+                <div class="col-8">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                        <label for="floatingTextarea">Notas</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+</div>

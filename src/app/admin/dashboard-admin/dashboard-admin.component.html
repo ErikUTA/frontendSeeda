@@ -1,0 +1,161 @@
+
+<div style="display: flex;">
+
+  
+  <div class="sidebar2 text-center">
+    <div>
+      <div class="center-a pt-5">
+        <div class="center-a" style="width: 130px; height: 130px; background: white; border-radius: 50%;">
+          <img src="../../../assets/perfil2.jpg" style="width: 80px; height: 80px;"/>
+        </div>
+      </div>
+      <button class="btn waves-effect btn-transparent col-8 mt-5" [routerLink]="['/auth/admin']">Administrar usuarios</button>                    
+      <hr class="text-white" />
+      <button class="btn waves-effect btn-transparent col-8" (click)="logout()">Logout</button>
+      <hr class="text-white" />      
+    </div>
+  </div>
+  
+  <div class="dashboard-2 p-4" style="background-image: url('../../../assets/banner-bg.png'); background-size: cover; background-repeat: no-repeat;">
+    <div class="target-2">
+      <div style="width: 100%; height: 80px; background: #0e3745;" class="center-a text-white">
+        <h2>Agregar usuarios</h2>          
+      </div>
+      <div class="p-5">
+        <form #frm="ngForm" (ngSubmit)="onAdd(frm)">
+          <div class="mb-3">
+            <label for="exampleInputNombre" class="form-label">Nombre completo:</label>
+            <input name="fullname" type="text" class="form-control" id="exampleInputNombre" aria-describedby="Email" ngModel required/>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputCorreo" class="form-label">Correo:</label>
+            <input name="email" type="email" class="form-control" id="exampleInputCorreo" aria-labelledby="Correo" ngModel required />
+          </div>
+          <div class="mb-3">
+            <label class="form-check-label" for="exampleContra" ngModel required>Contraseña</label>
+            <input name="password" type="password" class="form-control" id="exampleContra" ngModel required/>
+          </div>
+          <div class="mb-3">
+            <label class="form-check-label" for="exampleTelefono" ngModel required>Numero de telefono:</label>
+            <input name="cell_phone" type="number" class="form-control" id="exampleTelefono" ngModel required/>
+          </div>
+          <div class="mb-3">
+            <label class="form-check-label" for="exampleCargo" ngModel required>Cargo:</label>
+            <input name="job_title" type="text" class="form-control" id="exampleCargo" ngModel required />
+          </div>
+          <div class="mb-3">
+            <select name="role_id" class="form-select" ngModel required>
+              <option value="empl01">Usuario</option>
+              <option value="admin01">Administrar</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" ngModel required>Agregar</button>
+        </form>
+      </div>
+
+      <div style="width: 100%; height: 80px; background: #0e3745;" class="center-a text-white mt-4">
+        <h2>Eliminar y editar usuarios</h2>
+      </div>
+      <div class="center-a">
+        <table class="table table-dark text-center m-5">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Modificar</th>              
+              <th scope="col">Eliminar</th>              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of usuarios">                
+              <td>{{a.id}}</td>
+              <td>{{a.fullname}}</td>
+              <td><button (click)="changeUser(a.id)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                </svg>
+              </button></td>
+              <td><button (click)="changeUser(a.id)" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+              </button></td>                
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h2 class="modal-title" id="exampleModalLabel">Modificar datos del usuario</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="p-5">
+          <form #frm="ngForm" (ngSubmit)="alterUser(frm)">
+            <div class="mb-3">
+              <label for="exampleInputNombre" class="form-label">Nombre completo:</label>
+              <input value={{fullname}} name="fullname" type="text" class="form-control" id="exampleInputNombre" aria-describedby="Email" [(ngModel)]="fullname" required/>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputCorreo" class="form-label">Correo:</label>
+              <input value={{email}} name="email" type="email" class="form-control" id="exampleInputCorreo" aria-labelledby="Correo" [(ngModel)]="email" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-check-label" for="exampleTelefono" ngModel required>Numero de telefono:</label>
+              <input value={{cell_phone}} name="cell_phone" type="number" class="form-control" id="exampleTelefono" [(ngModel)]="cell_phone" required/>
+            </div>
+            <div class="mb-3">
+              <label class="form-check-label" for="exampleCargo" ngModel required>Cargo:</label>
+              <input value={{job_title}} name="job_title" type="text" class="form-control" id="exampleCargo" [(ngModel)]="job_title" required />
+            </div>            
+            <button type="submit" class="btn btn-primary" ngModel required>Guardar cambios</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h2 class="modal-title text-white" id="exampleModalLabel">Eliminar usuario</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h2>¿Seguro que desea eliminar al usuario?</h2>
+      </div>
+      <div class="modal-footer">
+        <button (click)="deleteUser(this.idUser)" data-bs-dismiss="modal" class="btn btn-danger">Eliminar</button>
+        <button (click)="this.idUser = ''" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

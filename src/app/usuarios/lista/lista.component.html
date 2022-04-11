@@ -1,0 +1,50 @@
+<div>
+    <div class="sidebar text-center">
+      <div>
+      <div class="center-a pt-5">
+          <img src="../../../assets/fo3.jpg" class="img" style="width: 130px; height: 130px; border-radius: 50%;"/>
+      </div>
+      <button class="btn waves-effect btn-transparent col-8 mt-5" [routerLink]="['/auth/dashboard']">Dashboard</button>
+      <hr class="text-white" />
+      <button class="btn waves-effect btn-transparent col-8" [routerLink]="['/auth/edit']">Mi perfil</button>
+      <hr class="text-white" />
+      <button class="btn waves-effect btn-transparent col-8" (click)="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="dashboard p-4" style="background-image: url('../../../assets/banner-bg.png'); background-size: cover; background-repeat: no-repeat;">
+    <div style="width: 100%; height: 80px; background: #01baef;" class="center-a text-white">      
+      <h2 style="margin: 0px;">Bienvenido al tablero de tareas</h2>
+    </div>
+    <div class="target pt-3 pb-5" style="height: auto !important;">
+        <!-- <a href="/auth/dashboard" style="position: absolute; top: 7%; left: 4%; color: white;">Regresar</a> -->
+        <div class="center-list mt-5">
+            <div>
+        
+                
+                <div class="text-center">
+                    <h2>Usuarios</h2>
+                </div>
+
+                <table class="table table-light mt-2" style="border: solid 3px lightgray; height: 59.6vh; width: 70vw;">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo electronico</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+            </div>
+        </div>
+    </div>
+    </div>    
+</div>

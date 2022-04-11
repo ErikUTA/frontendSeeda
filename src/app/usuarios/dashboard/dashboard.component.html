@@ -1,0 +1,95 @@
+
+  <div style="display: flex;">
+    <div class="sidebar text-center">
+      <div>
+        <div class="center-a pt-5">
+          <img src="../../../assets/fo3.jpg" class="img" style="width: 130px; height: 130px; border-radius: 50%;"/>
+        </div>
+        <button class="btn waves-effect btn-transparent col-8 mt-5" [routerLink]="['/auth/dashboard']">Dashboard</button>
+        <hr class="text-white" />
+        <button class="btn waves-effect btn-transparent col-8" [routerLink]="['/auth/edit']">Mi perfil</button>
+        <hr class="text-white" />
+        <button class="btn waves-effect btn-transparent col-8" (click)="logout()">Logout</button>
+      </div>
+    </div>
+    
+    <div class="dashboard-2 p-4" style="background-image: url('../../../assets/banner-bg.png'); background-size: cover; background-repeat: no-repeat;">
+      <div class="target-2">
+        <div style="width: 100%; height: 80px; background: #01baef;" class="center-a text-white">
+          <h2>Administra tus tareas</h2>          
+        </div>
+        <!-- <a href="/auth/login" style="position: absolute; top: 7%; left: 4%; color: white;" onclick='localStorage.removeItem("ACCESS_TOKEN")'>Logout</a> -->
+        <div style="display: flex; justify-content: center; width: 100%;">
+          <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+            [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
+            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+          </ngx-charts-pie-chart>
+        </div>
+        <div style="width: 100%; height: 80px; background: #01baef;" class="center-a text-white mt-4">
+          <h2>Administra tus proyectos</h2>
+        </div>
+        <div class="m-3 grid" *ngIf="infoProjects.length > 0">
+          <div class="tarea" *ngFor="let i of infoProjects">
+            <div class="project">
+              <div class="title"><h4 style="margin: 0%;">{{ i.project_name }}</h4></div>
+              <div class="text-center p-4">
+                <strong>Descripcion:</strong><p>{{ i.description }}</p>
+                <strong>Lider del proyecto:</strong><p>{{i.leader_project}}</p><br>
+                <button class="btn button-project mt-3 mb-3" [routerLink]="['/auth/listas']" onclick="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                  </svg>
+                  
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div *ngIf="infoProjects.length === 0" class="center-a mt-4">
+          <h1>No hay proyectos disponibles</h1>
+        </div>
+        <div style="width: 100%; height: 80px; background: #01baef;" class="center-a text-white mt-4">
+          <h2>Novedades en la pagina</h2>
+        </div>
+        <div class="m-5" style="display: flex; justify-content: center;">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 50% !important;">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../../assets/p1.jpg" class="d-block w-100" alt="...">
+                <div class="card p-3">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia natus ut corporis, exercitationem sed harum repellat non ea, fuga voluptate voluptatum sequi at eligendi atque doloremque suscipit. Optio, delectus est?</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="../../assets/p2.jpg" class="d-block w-100" alt="...">
+                <div class="card p-3">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia natus ut corporis, exercitationem sed harum repellat non ea, fuga voluptate voluptatum sequi at eligendi atque doloremque suscipit. Optio, delectus est?</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="../../assets/p3.jpg" class="d-block w-100" alt="...">
+                <div class="card p-3">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia natus ut corporis, exercitationem sed harum repellat non ea, fuga voluptate voluptatum sequi at eligendi atque doloremque suscipit. Optio, delectus est?</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

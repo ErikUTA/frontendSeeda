@@ -1,0 +1,38 @@
+<div class="h-100" style="background-image: url('../../assets/banner-bg.png');">
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+        <form class="pt-5" #frm="ngForm" (ngSubmit)="onLogin(frm)">
+            <h3 style="color: rgb(100, 156, 251);">Bienvenido</h3>
+            <div class="input-field">
+                <label style="color: rgba(16, 14, 14, 0.507); margin-top: 50px !important;" for="email">Email</label>
+                <input 
+                    type="email"
+                    ngModel
+                    required
+                    name="email"                                
+                    placeholder="Correo"
+                    id="email"
+                    class="validate"
+                />
+            </div>
+            <div class="input-field">
+                <label style="color: rgba(16, 14, 14, 0.507);" for="password">Password</label>
+                <input 
+                    type="password"
+                    ngModel
+                    name="password"
+                    placeholder="Contraseña"
+                    required
+                    id="password"
+                    class="validate"
+                />
+            </div>
+            <input type="submit" class="btn btn-primary button col-12 mt-5" value="Ingresar" />
+            <div class="text-center mt-3">
+                <a [routerLink]="['/auth/landing']">Regresar</a>
+            </div>
+        </form> 
+    
+</div>
