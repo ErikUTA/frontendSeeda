@@ -88,7 +88,7 @@ deleteUser(id:any) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-addTask(datos: User) {
+addTask(datos: any) {
   this.httpClient.post(`${this.AUTH_SERVER}/tasks`, datos).subscribe(data => {
     return data;
   }, error => {
@@ -104,9 +104,24 @@ addProject(datos:any) {
   });
 }
 
+alterTask(datos:any, id:any) {
+  this.httpClient.put(`${this.AUTH_SERVER}/tasks/${id}`, datos).subscribe(data => {
+    return data;
+  }, error => {
+    console.log(error);
+  });
+}
+
 public getTask(): any {
   return this.httpClient.get<any>(`${this.AUTH_SERVER}/tasks`);
 }
 
+deleteProject(id:any) {
+  this.httpClient.delete(`${this.AUTH_SERVER}/projects/${id}`).subscribe(data => {
+    return data;
+  }, error => {
+    console.log(error);
+  });
+}
 
 }

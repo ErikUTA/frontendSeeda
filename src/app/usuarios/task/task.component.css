@@ -20,7 +20,7 @@
     flex-direction: row;
     justify-content: space-between;
     box-sizing: border-box;
-    cursor: move;
+    /* cursor: move; */
     background: white;
     font-size: 14px;
     margin: 5px 4px 5px 4px;
@@ -84,6 +84,7 @@
     height: 40px;
     display: flex;
     align-items: center;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.15);
   }
   
   .textTask {

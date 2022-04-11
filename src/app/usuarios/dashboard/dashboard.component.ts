@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: any = 'below';
+  idProject:any;
 
 
 //////////////////INFO//////////////////
@@ -47,15 +48,19 @@ export class DashboardComponent implements OnInit {
   single:any = [];
   ngOnInit(){
     this.service.getUsers().subscribe((data:any) => {
+      console.log(data);
       this.usuarios = data;
     });
     this.service.proyects().subscribe((data:any) => {
+      console.log(data);
       this.infoProjects = data;      
     });
     this.service.taskCount().subscribe((data:any) => {
       this.single.push({name: "Tareas", value: data.count});
+      console.log(data);
     });
     this.service.projectsCount().subscribe((data:any) => {
+      console.log(data);
       this.single.push({name: "Proyectos", value: data.count});
     }); 
   }
@@ -78,6 +83,13 @@ export class DashboardComponent implements OnInit {
     }
     console.log(array);
     this.service.addProject(array);
+    window.location.reload();
+  }
+
+  deleteProject(id:any){
+    console.log(id);
+    this.service.deleteProject(id);
+    this.idProject = "";
     window.location.reload();
   }
 

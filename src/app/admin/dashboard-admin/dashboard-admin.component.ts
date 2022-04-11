@@ -27,7 +27,7 @@ export class DashboardAdminComponent implements OnInit {
   getUsuarios():void {
     this.service.getUsers().subscribe((data:any) => {
       this.usuarios = data;
-      console.log(data)
+      console.log(data);
     });
   }
 
@@ -63,6 +63,7 @@ export class DashboardAdminComponent implements OnInit {
       this.job_title = data.job_title;
       this.role_id = data.role_id;
       this.idUser = data.id;
+      console.log(data);
     });
   }
 

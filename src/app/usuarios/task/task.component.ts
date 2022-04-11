@@ -9,17 +9,31 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TaskComponent implements OnInit {
   tareas:any = [];
+  all:any = [];
+  finalizadas: any = [];
   description: any;
+  idTask:any;
+  one:any;
+  two:any;
 
   constructor(private service: AuthService) { }
 
   ngOnInit(): void {
+    var listaNombres = window.location.pathname.slice(11, 20).split('/');
+    this.one = listaNombres[0].length === 2 ? Number.parseInt(window.location.pathname.slice(11,13)) : Number.parseInt(window.location.pathname.slice(11,12));
+    this.two = listaNombres[0].length === 2 && listaNombres[1].length === 2 ? Number.parseInt(window.location.pathname.slice(14,16)) : listaNombres[0].length === 1 && listaNombres[0].length === 1 ? Number.parseInt(window.location.pathname.slice(13, 15)) : listaNombres[0].length === 1 && listaNombres[1].length === 2 ? Number.parseInt(window.location.pathname.slice(13, 15)) : listaNombres[0].length === 2 && listaNombres[1].length === 1 ? Number.parseInt(window.location.pathname.slice(14, 15)):null;
+    console.log(this.one, this.two);
     this.service.getTask().subscribe((data: any) => {
       console.log(data);
       if(data){
         for(let i=0; i<data.length; i++){
-          if(data[i].user_id === Number.parseInt(window.location.pathname.slice(11,12))){
-            this.tareas.push(data[i]);
+          if(data[i].user_id === this.one && data[i].project_id === this.two){
+            if(data[i].status === true){
+              this.tareas.push(data[i]);
+            }else{
+              this.finalizadas.push(data[i]);
+            }
+            this.all.push(data);
           }
         }
       }
@@ -58,11 +72,37 @@ export class TaskComponent implements OnInit {
         status: true,
         task_name: frm.value.task_name,
         description: frm.value.description,
-        user_id: Number.parseInt(window.location.pathname.slice(11,12)),
-        project_id: Number.parseInt(window.location.pathname.slice(13, 14))
+        user_id: this.one,
+        project_id: this.two
     }
     console.log(array);
     this.service.addTask(array);
+    window.location.reload();
+  }
+
+  onSubmit(task_name:any, description: any, id:any):void {
+    
+    var array:any = {
+        status: false,
+        task_name: task_name,
+        description: description,
+        user_id: this.one,
+        project_id: this.two
+    }
+    this.service.alterTask(array, id);
+    window.location.reload();
+  }
+
+  regresar(task_name:any, description: any, id:any):void {
+    
+    var array:any = {
+        status: true,
+        task_name: task_name,
+        description: description,
+        user_id: this.one,
+        project_id: this.two
+    }
+    this.service.alterTask(array, id);
     window.location.reload();
   }
 
@@ -72,7 +112,6 @@ export class TaskComponent implements OnInit {
 
   logout(): void {
     window.localStorage.removeItem('user');
-    // console.log('HOLA');
     window.location.href = '/login';
   }
 
