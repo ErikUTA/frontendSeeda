@@ -11,12 +11,12 @@ import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/auth/landing', pathMatch: 'full'},
+  // {path: '', redirectTo: '/auth/landing', pathMatch: 'full'},
+  {path: '', component: LandingComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'landing', component: LandingComponent},
   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(x => x.AuthModule)},
 ];
-
+ 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

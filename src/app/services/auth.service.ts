@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  AUTH_SERVER: string = 'http://localhost:3000';
+  AUTH_SERVER: string = 'https://still-citadel-42322.herokuapp.com';
   private authSubject: BehaviorSubject<any>;
   local:any = localStorage.getItem('user');
   dataProjects: any;
